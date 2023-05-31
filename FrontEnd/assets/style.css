@@ -193,6 +193,10 @@ footer nav ul {
 
 /******page connection*****/
 
+nav a {
+	color: black;
+}
+
 .connect {
 	display: flex;
 	flex-direction: column;
