@@ -1,6 +1,6 @@
 const butonConnect = document.querySelector('#submit');
 
-butonConnect.addEventListener('click', async function(event){
+butonConnect.addEventListener('click', async (event) => {
 
     event.preventDefault();
 
@@ -29,12 +29,8 @@ butonConnect.addEventListener('click', async function(event){
         console.log(errorMessage)
     }
     
-    if (response.status === 200) successConnection (response)
-    else if(response.status === 401) errorConnection (response)
-    else if (response.status === 404) errorConnection (response)
+    if (response.status === 200) successConnection(response)
+    else if (response.status === 401) errorConnection(response)
+    else if (response.status === 404) errorConnection(response)
 });
-
-
-
-
 

@@ -230,3 +230,29 @@ nav a {
 	color: #3D3D3D;
 }
 
+/******filtres******/
+.all_filters{
+	display: flex;
+	justify-content: space-between;
+	width: 50%;
+	margin: auto;
+	margin-bottom: 2em;
+}
+.filtre{
+	padding: 5px 15px;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	text-align: center;
+	color: #1D6154;
+	border:1px solid #1D6154;
+	border-radius: 25px;
+}
+.filtre:hover{
+	cursor: pointer;
+}
+.filtre.active {
+	background-color: #1D6154;
+	color: white;
+  }
