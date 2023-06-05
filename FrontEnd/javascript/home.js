@@ -26,11 +26,11 @@ const fetchImages = async (category = null) => {
   };
   
   const filtreCategories = async () => {
-    const containerFiltres = document.querySelector(".all_filters"); // Cacher la partie filtre si l'utilisateur est connecté
+    const containerFiltres = document.querySelector(".all_filters"); 
   
     const response = await fetch("http://localhost:5678/api/categories");
     const categories = await response.json();
-    console.log(categories); // affiche mes catégories
+    
   
     const tousLesProjets = createFilterButton("Tous");
     tousLesProjets.addEventListener("click", async () => {
@@ -67,3 +67,45 @@ const fetchImages = async (category = null) => {
   fetchImages();
   filtreCategories();
   
+
+ 
+//gestion login logout
+
+const token = sessionStorage.getItem('token');
+
+if (token) {
+    const containerFiltres = document.querySelector(".all_filters")
+    containerFiltres.style.display ="none";
+
+    const sectionHeader = document.querySelector('header');
+    const header = document.createElement('div');
+    header.id = 'headerLogin';
+    const texteHeader = document.createElement('p');
+    texteHeader.id = 'boutonModif';
+    texteHeader.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Mode édition';
+    const boutonHeader = document.createElement('button');
+    boutonHeader.innerHTML = 'Publier les changements';
+  
+    sectionHeader.prepend(header);
+    header.appendChild(texteHeader)
+    header.appendChild(boutonHeader);
+  
+    const sectionIntro = document.querySelector('#introduction');
+    const modifierPhoto = document.createElement('p');
+    modifierPhoto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
+    modifierPhoto.id = 'boutonModif';
+    sectionIntro.appendChild(modifierPhoto);
+  }
+  
+  // Ces lignes changent le texte "login" en "logout" si l'utilisateur est connecté
+  const changeLogin = document.querySelector('.login');
+  if (token) {
+    changeLogin.innerText = 'logout';
+  }
+  else {
+    changeLogin.innerText = 'login';
+    
+  }
+
+
+

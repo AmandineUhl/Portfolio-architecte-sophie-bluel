@@ -24,6 +24,7 @@ butonConnect.addEventListener('click', async (event) => {
         window.location.href ='./index.html';
     }
 
+
     const errorConnection = async (response) => {
         const errorMessage = await response.json()
         console.log(errorMessage)
@@ -33,4 +34,5 @@ butonConnect.addEventListener('click', async (event) => {
     else if (response.status === 401) errorConnection(response)
     else if (response.status === 404) errorConnection(response)
 });
+
 
