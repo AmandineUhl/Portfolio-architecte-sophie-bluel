@@ -72,40 +72,38 @@ const fetchImages = async (category = null) => {
 //gestion login logout
 
 const token = sessionStorage.getItem('token');
+const containerFiltres = document.querySelector(".all_filters");
+const sectionHeader = document.querySelector('header');
+const sectionPortfolio = document.querySelector('#portfolio H2');
+const changeLogin = document.querySelector('.login');
 
 if (token) {
-    const containerFiltres = document.querySelector(".all_filters")
-    containerFiltres.style.display ="none";
+    containerFiltres.style.display = "none";
 
-    const sectionHeader = document.querySelector('header');
     const header = document.createElement('div');
     header.id = 'headerLogin';
+  
     const texteHeader = document.createElement('p');
     texteHeader.id = 'boutonModif';
     texteHeader.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Mode édition';
+  
     const boutonHeader = document.createElement('button');
     boutonHeader.innerHTML = 'Publier les changements';
   
     sectionHeader.prepend(header);
-    header.appendChild(texteHeader)
+    header.appendChild(texteHeader);
     header.appendChild(boutonHeader);
   
-    const sectionIntro = document.querySelector('#introduction');
     const modifierPhoto = document.createElement('p');
     modifierPhoto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
     modifierPhoto.id = 'boutonModif';
-    sectionIntro.appendChild(modifierPhoto);
-  }
+    sectionPortfolio.appendChild(modifierPhoto);
   
-  // Ces lignes changent le texte "login" en "logout" si l'utilisateur est connecté
-  const changeLogin = document.querySelector('.login');
-  if (token) {
     changeLogin.innerText = 'logout';
-  }
-  else {
+} else {
     changeLogin.innerText = 'login';
-    
-  }
+}
+
 
 
 

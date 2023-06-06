@@ -54,31 +54,46 @@ body {
 	font-size: 14px;
 }
 header {
-	display: flex;
-	justify-content: space-between;
 	margin: 50px 0
 }
 
-/*****header admin*****/
-#navBar {
+#navAdmin {
 	display: flex;
 	justify-content: space-between;
-	margin: 0;
-} 
+	
+}
 
 #headerLogin {
+	display: flex;
 	background-color: black;
 	color: white;
 	width: 100%;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 	font-family: 'Work Sans';
 	font-size: 14px;
-	margin: auto;
+	margin-bottom: 30px;
 }
 
 #headerLogin button {
 	background-color: white;
 	color: black;
 	width: auto;
+	
+	border-radius: 60px;
+}
+
+button {
+	padding: 10px;
+	margin: 5px;
+
+}
+
+#boutonModif {
+	display: flex;
+	gap: 10px;
+	font-size: 14px;
 }
 
 section {
@@ -102,6 +117,10 @@ h1 > span {
 }
 
 h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
