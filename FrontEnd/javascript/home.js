@@ -104,6 +104,10 @@ if (token) {
     changeLogin.innerText = 'login';
 }
 
-
+changeLogin.addEventListener('click', function() {
+  if (token) {
+    sessionStorage.removeItem('token');
+  } 
+});
 
 
