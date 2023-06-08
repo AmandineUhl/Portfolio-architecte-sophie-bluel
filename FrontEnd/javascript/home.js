@@ -3,7 +3,7 @@ const fetchImages = async (category = null) => {
       const response = await fetch("http://localhost:5678/api/works");
       const data = await response.json();
       const gallery = document.querySelector(".gallery");
-      gallery.innerHTML = ""; // Réinitialise le contenu de la galerie avant d'afficher les nouvelles images
+      gallery.innerHTML = ""; 
   
       const filteredData = category ? data.filter(image => image.category.name === category.name) : data;
   
@@ -32,12 +32,12 @@ const fetchImages = async (category = null) => {
     const categories = await response.json();
     
   
-    const tousLesProjets = createFilterButton("Tous");
-    tousLesProjets.addEventListener("click", async () => {
+    const allProjects = createFilterButton("Tous");
+    allProjects.addEventListener("click", async () => {
       await fetchImages();
-      setActiveButton(tousLesProjets);
+      setActiveButton(allProjects);
     });
-    containerFiltres.appendChild(tousLesProjets);
+    containerFiltres.appendChild(allProjects);
   
     const setActiveButton = button => {
       const buttons = containerFiltres.querySelectorAll(".filtre");
@@ -54,7 +54,7 @@ const fetchImages = async (category = null) => {
       containerFiltres.appendChild(button);
     });
   
-    setActiveButton(tousLesProjets);
+    setActiveButton(allProjects);
   };
   
   const createFilterButton = text => {
@@ -75,7 +75,7 @@ const token = sessionStorage.getItem('token');
 const containerFiltres = document.querySelector(".all_filters");
 const sectionHeader = document.querySelector('header');
 const sectionPortfolio = document.querySelector('#portfolio H2');
-const changeLogin = document.querySelector('.login');
+const changeLog = document.querySelector('.login');
 
 if (token) {
     containerFiltres.style.display = "none";
@@ -84,7 +84,7 @@ if (token) {
     header.id = 'headerLogin';
   
     const texteHeader = document.createElement('p');
-    texteHeader.id = 'boutonModif';
+    texteHeader.id = 'boutonEdit';
     texteHeader.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Mode édition';
   
     const boutonHeader = document.createElement('button');
@@ -94,17 +94,17 @@ if (token) {
     header.appendChild(texteHeader);
     header.appendChild(boutonHeader);
   
-    const modifierPhoto = document.createElement('p');
-    modifierPhoto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
-    modifierPhoto.id = 'boutonModif';
-    sectionPortfolio.appendChild(modifierPhoto);
+    const modifPicture = document.createElement('p');
+    modifPicture.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
+    modifPicture.id = 'boutonModif';
+    sectionPortfolio.appendChild(modifPicture);
   
-    changeLogin.innerText = 'logout';
+    changeLog.innerText = 'logout';
 } else {
-    changeLogin.innerText = 'login';
+    changeLog.innerText = 'login';
 }
 
-changeLogin.addEventListener('click', function() {
+changeLog.addEventListener('click', function() {
   if (token) {
     sessionStorage.removeItem('token');
   } 
