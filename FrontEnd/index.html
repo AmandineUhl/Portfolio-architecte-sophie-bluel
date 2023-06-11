@@ -59,20 +59,47 @@
 			<input type="submit" value="Envoyer">
 		</form>
 	</section>
-	<aside id="modale">
-		<div id="modale_window_1">
+	<aside id="modale" aria-hidden="true">
+		<div id="modale_window_1" aria-hidden="true">
 			<div id="nav">
 				<p id="nav_closed"><i class="fa-solid fa-x"></i></p>
 			</div>
 			<h1>Galerie photo</h1>
 			<div id="works">
 			</div>
-			<hr>
 			<div id="control_modale">
 				<button id="add_pictures">Ajouter une photo</button>
 				<p>Supprimer la galerie</p>
 			</div>
 		</div>
+	</aside>
+		<aside id="modale">
+		<div id="modal_window_2">
+			<div id="nav">
+			  <p id="nav_previewsly"><i class="fa-solid fa-arrow-left"></i></p>
+			  <p id="nav_closed"><i class="fa-solid fa-x"></i></p>
+			</div>
+			<h1>Ajout photo</h1>
+			<div class="preview hidden"><img src="" alt="" id="preview"></div>
+			<div class="window_add">
+			  <i class="fa-solid fa-image"></i>
+				<input class="hidden" type="file" id="input-photo" accept="image/jpeg, image/png" name='image'/>
+				<label for="input-photo">+ Ajouter Photo</label>
+	
+			  <p>jpg, png : 4mo max</p>
+			</div>
+			<div id="input-modal" aria-hidden="true">
+			  <form id='input-form' action="#">
+			  <label for="title">Titre</label>
+			  <input type="text" id="input-texte" name='title'/>
+			  <label for="select">Catégorie</label>
+			  <select name="category" id="categorie"></select>
+			  <hr>
+			  <input id="buton_send" type="submit" value="Envoyer">
+			</form>
+			</div>
+	
+		  </div>
 	</aside>
 </main>
 

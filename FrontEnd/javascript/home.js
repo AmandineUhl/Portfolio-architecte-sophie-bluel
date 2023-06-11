@@ -100,6 +100,7 @@ if (token) {
     sectionPortfolio.appendChild(modifPicture);
   
     changeLog.innerText = 'logout';
+    sectionHeader.style.margin ='0';
 } else {
     changeLog.innerText = 'login';
 }

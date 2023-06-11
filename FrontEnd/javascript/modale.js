@@ -1,6 +1,7 @@
 
 function modale1() {
 const modale = document.getElementById("modale");
+const modalWindow2 = getElementById("modal_window_2");
 const accessModale = document.getElementById("boutonModif");
 const modalClosed = document.getElementById("nav_closed");
 const nextModale = document.getElementById("add_pictures");
@@ -9,17 +10,22 @@ const works = document.getElementById("works");
 
 
 accessModale.addEventListener('click', () => {
-  modale.style.display = "flex";
+  modale.setAttribute("aria-hidden", "false");
 });
 
 modalClosed.addEventListener('click', () => {
-  modale.style.display = "none";
+  modale.setAttribute("aria-hidden", "true");
 });
-//ajouter en dehors de la modale
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    modale.setAttribute("aria-hidden", "true");
+  }
+});
 
 
 nextModale.addEventListener('click',() => {
-  //modal2()
+  
 });
 
 fetch("http://localhost:5678/api/works")
@@ -44,3 +50,7 @@ fetch("http://localhost:5678/api/works")
 
 modale1();
 
+function modal2() {
+
+
+}
