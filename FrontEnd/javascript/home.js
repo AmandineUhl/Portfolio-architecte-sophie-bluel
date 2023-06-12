@@ -104,7 +104,7 @@ if (token) {
     sectionHeader.style.margin ='0';
 }
 
-changeLog.addEventListener('click', function() {
+changeLog.addEventListener('click', () => {
   if (token) {
     sessionStorage.removeItem('token');
   } 

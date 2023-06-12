@@ -30,6 +30,7 @@ butonConnect.addEventListener('click', async (event) => {
             body: dataBase,
         });
 
+
         if (response.status === 200) {
             successConnection(response);
         } else if (response.status === 401 || response.status === 404) {
