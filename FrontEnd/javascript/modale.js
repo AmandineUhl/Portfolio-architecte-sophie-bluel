@@ -54,10 +54,10 @@ function modal2() {
   const modal1 = document.getElementById("modal1");
   const modal2 = document.getElementById("modal2");
   const modalClosed = document.getElementById("nav_closed2");
-  const navPreview = document.getElementById("nav_previewsly")
+  const navPreview = document.getElementById("nav_previewsly");
 
   modal1.setAttribute("aria-hidden", "true");
-  modal2.setAttribute("aria-hidden", "false")
+  modal2.setAttribute("aria-hidden", "false");
 
 
   modalClosed.addEventListener('click', () => {
@@ -74,5 +74,4 @@ function modal2() {
     modal2.setAttribute("aria-hidden", "true");
     modal1.setAttribute("aria-hidden", "false");
   });
-
 }
