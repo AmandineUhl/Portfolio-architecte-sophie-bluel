@@ -61,6 +61,7 @@ const fetchImages = async (category = null) => {
     const button = document.createElement("button");
     button.classList.add("filtre");
     button.textContent = text;
+
     return button;
   };
   
@@ -77,9 +78,10 @@ const sectionHeader = document.querySelector('header');
 const sectionPortfolio = document.querySelector('#portfolio H2');
 const changeLog = document.querySelector('.login');
 
-if (token) {
-    containerFiltres.style.display = "none";
+containerFiltres.style.display = token ? "none" : "block";
+changeLog.innerText = token ? 'logout' : 'login';
 
+if (token) {
     const header = document.createElement('div');
     header.id = 'headerLogin';
   
@@ -94,15 +96,12 @@ if (token) {
     header.appendChild(texteHeader);
     header.appendChild(boutonHeader);
   
-    const modifPicture = document.createElement('p');
-    modifPicture.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
-    modifPicture.id = 'boutonModif';
-    sectionPortfolio.appendChild(modifPicture);
+    const modifMode = document.createElement('p');
+    modifMode.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modifier';
+    modifMode.id = 'boutonModif';
+    sectionPortfolio.appendChild(modifMode);
   
-    changeLog.innerText = 'logout';
     sectionHeader.style.margin ='0';
-} else {
-    changeLog.innerText = 'login';
 }
 
 changeLog.addEventListener('click', function() {
@@ -110,5 +109,6 @@ changeLog.addEventListener('click', function() {
     sessionStorage.removeItem('token');
   } 
 });
+
 
 

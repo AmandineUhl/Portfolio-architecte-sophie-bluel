@@ -316,15 +316,15 @@ nav a {
 	width: 100%;
   }
 
-/****modale 1*****/
+/****modal 1*****/
 
 	
-#modale[aria-hidden="true"] {
+#modal1[aria-hidden="true"] {
 	display: none;
   }
   
   
-  #modale:not([aria-hidden="true"]){
+#modal1:not([aria-hidden="true"]) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -337,7 +337,7 @@ nav a {
 	
 }
 
-#modale_window_1, #modal_window_2 {
+#modal_window_1 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -383,11 +383,7 @@ nav a {
 		width: 76px;
 		height: 102px;
 	}
-
-	
 }
-
-
 
 #add_pictures {
 	cursor: pointer;
@@ -402,9 +398,7 @@ nav a {
 	border-radius: 60px ;	
 }
 
-
-
-#control_modale {
+#control_modal {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -414,5 +408,46 @@ nav a {
 		text-decoration-line: underline;
 		cursor: pointer;
 		text-align: center;
+	}
+}
+
+/****modal 2*****/
+
+#modal2[aria-hidden="true"] {
+	display: none;
+  }
+  
+  
+#modal2:not([aria-hidden="true"]) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	
+}
+
+#modal_window_2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: auto;
+	width: 40%;
+	height: auto;
+	padding: 20px;
+	background-color: white;
+	border-radius: 10px;
+
+	& h1 {
+		text-align: center;
+		font-family: 'Work Sans';
+		font-weight: 400;
+		font-size: 26px;
+		color: black;
+		
 	}
 }
