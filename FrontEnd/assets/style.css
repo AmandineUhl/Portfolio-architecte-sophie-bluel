@@ -317,14 +317,7 @@ nav a {
   }
 
 /****modal 1*****/
-
-	
-#modal1[aria-hidden="true"] {
-	display: none;
-  }
-  
-  
-#modal1:not([aria-hidden="true"]) {
+#main_modal:not([aria-hidden="true"]) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -334,10 +327,18 @@ nav a {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
-	
 }
 
-#modal_window_1 {
+#main_modal[aria-hiden="true"] {
+	display:none;
+}
+	
+#modal1[aria-hidden="true"] {
+	display: none;
+  }
+  
+  
+#modal1:not([aria-hidden="true"]) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -356,9 +357,9 @@ nav a {
 		color: black;
 		
 	}
+
 }
-
-
+	
 #nav_closed {
 	text-align: right;
 	cursor: pointer;
@@ -436,19 +437,6 @@ figure i {
   
 #modal2:not([aria-hidden="true"]) {
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	
-}
-
-#modal_window_2 {
-	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -465,9 +453,10 @@ figure i {
 		font-weight: 400;
 		font-size: 26px;
 		color: black;
-		
-	}
+	}	
 }
+
+
 #nav {
 	position:relative;
 	display: inline-block;

@@ -1,5 +1,6 @@
 function modal1() {
   const modal1 = document.getElementById("modal1");
+  const main = document.querySelector("#main_modal");
   const accessModale = document.getElementById("boutonModif");
   const modalClosed = document.getElementById("nav_closed");
   const nextModale = document.getElementById("add_pictures");
@@ -9,15 +10,18 @@ function modal1() {
 
   accessModale.addEventListener("click", () => {
     modal1.setAttribute("aria-hidden", "false");
+    main.setAttribute("aria-hidden", "false");
   });
 
   modalClosed.addEventListener("click", () => {
     modal1.setAttribute("aria-hidden", "true");
+    main.setAttribute("aria-hidden", "true");
   });
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       modal1.setAttribute("aria-hidden", "true");
+      main.setAttribute("aria-hidden", "true");
     }
   });
 
@@ -110,6 +114,7 @@ modal1();
 function modal2() {
   const modal1 = document.getElementById("modal1");
   const modal2 = document.getElementById("modal2");
+  const main = document.querySelector("#main_modal");
   const modalClosed = document.getElementById("nav_closed2");
   const navPreview = document.getElementById("nav_previewsly");
 
@@ -118,11 +123,13 @@ function modal2() {
 
   modalClosed.addEventListener("click", () => {
     modal2.setAttribute("aria-hidden", "true");
+    main.setAttribute("aria-hidden", "true");
   });
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       modal2.setAttribute("aria-hidden", "true");
+      main.setAttribute("aria-hidden", "true");
     }
   });
 
@@ -131,3 +138,7 @@ function modal2() {
     modal1.setAttribute("aria-hidden", "false");
   });
 }
+
+
+
+
