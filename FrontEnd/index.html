@@ -69,7 +69,7 @@
 			</div>
 			<div id="control_modal">
 				<button id="add_pictures">Ajouter une photo</button>
-				<p>Supprimer la galerie</p>
+				<button id="all_supprime">Supprimer la galerie</button>
 			</div>
 		</div>
 	</aside>
@@ -82,10 +82,9 @@
 			<h1>Ajout photo</h1>
 			<div class="preview hidden"><img src="" alt="" id="preview"></div>
 			<div class="window_add">
-				<i class="fa-solid fa-image"></i>
+				<i class="fa-sharp fa-regular fa-image"></i>
 				<input class="hidden" type="file" id="input-photo" accept="image/jpeg, image/png" name='image' />
-				<label for="input-photo">+ Ajouter Photo</label>
-	
+				<label class="add" for="input-photo">+ Ajouter Photo</label>
 				<p>jpg, png : 4mo max</p>
 			</div>
 			<div id="input-modal" >
@@ -94,8 +93,7 @@
 					<input type="text" id="input-texte" name='title' />
 					<label for="select">Catégorie</label>
 					<select name="category" id="categorie"></select>
-					<hr>
-					<input id="buton_send" type="submit" value="Envoyer">
+					<input id="buton_send" type="submit" value="Valider">
 				</form>
 			</div>
 	

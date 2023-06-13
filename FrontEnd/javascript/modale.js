@@ -48,25 +48,57 @@ function modal1() {
         figure.appendChild(deleteIcon);
 
         works.appendChild(figure);
+        
+
+        //supression image par image
 
         deleteIcon.addEventListener("click", () => {
           const imageId = datas.id;
-
           const token = sessionStorage.getItem("token");
 
           fetch(`http://localhost:5678/api/works/${imageId}`, {
             method: "DELETE",
             headers: {
-              'Authorization': `Bearer ${token}` 
+              Authorization: `Bearer ${token}`,
             },
           })
             .then((response) => {
               if (response.ok) {
                 figure.remove();
-              } 
+              }
             })
             .catch((error) => {
-              console.error("Erreur lors de la suppression de l'image :", error);
+              console.error(
+                "Erreur lors de la suppression de l'image :",
+                error
+              );
+            });
+        });
+
+        //supression de toute la galerie
+
+        const allSupprime = document.getElementById("all_supprime");
+
+        allSupprime.addEventListener("click", () => {
+          const imageId = datas.id;
+          const token = sessionStorage.getItem("token");
+
+          fetch(`http://localhost:5678/api/works/${imageId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                works.innerHTML = "";
+              }
+            })
+            .catch((error) => {
+              console.error(
+                "Erreur lors de la suppression de la galerie :",
+                error
+              );
             });
         });
       });
@@ -74,7 +106,6 @@ function modal1() {
 }
 
 modal1();
-
 
 function modal2() {
   const modal1 = document.getElementById("modal1");
