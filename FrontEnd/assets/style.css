@@ -500,7 +500,15 @@ figure i {
 		color:#B9C5CC;
 		margin-bottom: 19px;
 	}
+
+	& img {
+		
+		width: 129px;
+		height: 193px;
+	}
 }
+
+
 
 .add {
 	display: flex;
@@ -560,3 +568,5 @@ figure i {
 .hidden {
 	display: none;
 }
+
+  

@@ -139,6 +139,30 @@ function modal2() {
   });
 }
 
+//preview 
 
+const imageInput = document.getElementById('input-photo');
+const imagePreviewContainer = document.querySelector('.window_add');
 
+imageInput.addEventListener('change', () => {
+  if (imageInput.files && imageInput.files[0]) {
+    const file = imageInput.files[0];
+    const maxSizeInBytes = 4 * 1024 * 1024; // 4 Mo
+
+    if (file.size > maxSizeInBytes) {
+      alert("L'image ne doit pas dépasser 4 Mo.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imgElement = document.createElement('img');
+      imgElement.src = e.target.result;
+      imagePreviewContainer.classList.remove('hidden');
+      imagePreviewContainer.appendChild(imgElement);
+    };
+
+    reader.readAsDataURL(file);
+  }
+});
 
