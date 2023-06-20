@@ -1,4 +1,4 @@
-const fetchImages = async (category = null) => {
+const fetchImages =  async   (category = null)  => {
     try {
       const response = await fetch("http://localhost:5678/api/works");
       const data = await response.json();

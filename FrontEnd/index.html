@@ -68,8 +68,8 @@
 			<div id="works">
 			</div>
 			<div id="control_modal">
-				<button id="add_pictures">Ajouter une photo</button>
-				<button id="all_supprime">Supprimer la galerie</button>
+				<button  id="add_pictures">Ajouter une photo</button>
+				<button  id="all_supprime">Supprimer la galerie</button>
 			</div>
 		</div>
 		<div id="modal2" aria-hidden="true">
@@ -78,6 +78,7 @@
 				<p id="nav_closed2"><i class="fa-solid fa-x"></i></p>
 			</div>
 			<h1>Ajout photo</h1>
+			<form id="formulaire" action="#">
 			<div class="preview hidden"><img src="" alt="" id="preview"></div>
 			<div class="window_add">
 				<i class="fa-sharp fa-regular fa-image icon"></i>
@@ -86,14 +87,20 @@
 				<p class="size">jpg, png : 4mo max</p>
 			</div>
 			<div id="input-modal">
-				<form id='input-form' action="#">
+				<div id='input-form'>
 					<label for="title">Titre</label>
-					<input type="text" id="input-texte" name='title' />
+					<input type="text" id="input-texte" name='title' class="bordertitle-error" />
 					<label for="select">Catégorie</label>
-					<select name="category" id="categorie"></select>
-					<input id="buton_send" type="submit" value="Valider">
-				</form>
+					<select name="category" id="categorie">
+						<option class="empty-option" id="empty-option" value=""
+              			disabled selected=""> Choisissez une categorie</option>
+					</select>
+					<p class="error-title-form">Erreur: Titre obligatoire !</p>
+          			<div class="second-bar-modal"></div>
+					<input id="buton_send" type="button" value="Valider">
+				</div>
 			</div>
+		</form>
 		</div>
 
 	</aside>

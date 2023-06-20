@@ -1,4 +1,5 @@
 const buttonConnect = document.querySelector('#submit');
+const errorMessage = document.querySelector('.error-message'); 
 
 buttonConnect.addEventListener('click', async (event) => {
   event.preventDefault();
@@ -22,10 +23,13 @@ buttonConnect.addEventListener('click', async (event) => {
       sessionStorage.setItem("token", data.token);
       sessionStorage.setItem("userId", data.userId);
       window.location.href = './index.html';
-    } else if (response.status === 401 || response.status === 404) {
-      const errorMessage = await response.json();
-      console.log(errorMessage);
-      alert("User not found");
+    } else {
+      errorMessage.textContent = "Erreur dans l’identifiant ou le mot de passe";
+      buttonConnect.classList.add("shake"); 
+
+      setTimeout(() => {
+        buttonConnect.classList.remove("shake"); 
+      }, 500);
     }
   } catch (error) {
     console.error(error);
