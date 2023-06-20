@@ -507,6 +507,7 @@ figure i {
 }
 
 .window_add {
+	position: relative;
 	margin: auto;
 	margin-top: 36px;
 	width: 420px;
@@ -526,7 +527,7 @@ figure i {
 	line-height: 12px;
 	}
 
-	& i {
+	& .icon {
 		font-size: 58px;
 		color:#B9C5CC;
 		margin-bottom: 19px;
@@ -540,6 +541,28 @@ figure i {
 	}
 }
 
+#clean_form {
+	display: none;
+	cursor: pointer;
+	padding: 5px;
+	background-color: white;
+	border: rgb(20, 179, 20);
+	border-radius: 5px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: rgb(20, 179, 20);
+}
+
+#clean_form:hover {
+	color: red;
+	border: rgb(20, 179, 20);
+	transform: scale(1.2);
+}
+
+.clean {
+		border: red;
+	}
 
 
 .error-title-form {

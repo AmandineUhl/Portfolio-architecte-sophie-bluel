@@ -1,5 +1,4 @@
 
-// Fonction pour afficher la première modal
 function modal1() {
   const modal1 = document.getElementById("modal1");
   const modale2 = document.getElementById("modal2");
@@ -8,39 +7,40 @@ function modal1() {
   const modalClosed = document.getElementById("nav_closed");
   const nextModale = document.getElementById("add_pictures");
 
-  accessModale.addEventListener("click", () => {
+  function showModals() {
     modal1.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
-  });
+  }
 
-  modalClosed.addEventListener("click", () => {
+  function hideModals() {
     modal1.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
-  });
+  }
 
-  document.addEventListener("keydown", function (event) {
+  accessModale.addEventListener("click", showModals);
+  modalClosed.addEventListener("click", hideModals);
+
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      modal1.setAttribute("aria-hidden", "true");
-      main.setAttribute("aria-hidden", "true");
+      hideModals();
     }
   });
+  
 
-  document.addEventListener("click", function (event) {
-    if (event.target == main) {
-      main.setAttribute("aria-hidden", "true");
+  document.addEventListener("click", (event) => {
+    if (event.target === main) {
+      hideModals();
       modale2.setAttribute("aria-hidden", "true");
     }
   });
 
-  nextModale.addEventListener("click", () => {
-    modal2();
-  });
+  nextModale.addEventListener("click", modal2);
 
   chargeImageModal();
-
 }
 
 modal1();
+
 
 
 
@@ -107,28 +107,30 @@ function modal2() {
   modal1.setAttribute("aria-hidden", "true");
   modal2.setAttribute("aria-hidden", "false");
 
-  modalClosed.addEventListener("click", () => {
+  const closeModal = () => {
     modal2.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
-    emptyForm()
-  });
+    emptyForm();
+  };
 
-  document.addEventListener("keydown", function (event) {
+  const handleKeyDown = (event) => {
     if (event.key === "Escape") {
-      modal2.setAttribute("aria-hidden", "true");
-      main.setAttribute("aria-hidden", "true");
-      emptyForm()
+      closeModal();
+      emptyForm();
     }
-  });
+  };
 
-  navPreview.addEventListener("click", () => {
+  const switchToModal1 = () => {
     modal2.setAttribute("aria-hidden", "true");
     modal1.setAttribute("aria-hidden", "false");
-    emptyForm()
-  });
+    emptyForm();
+  };
 
-  
+  modalClosed.addEventListener("click", closeModal);
+  document.addEventListener("keydown", handleKeyDown);
+  navPreview.addEventListener("click", switchToModal1);
 }
+
 
 //preview
 
@@ -158,7 +160,7 @@ imageInput.addEventListener("change", () => {
       icon.style.display = "none";
       size.style.display = "none";
       add.style.display = "none";
-
+      clean();
       showCategory();
     };
 
@@ -261,10 +263,12 @@ function emptyForm() {
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
   imagePreviewContainer.removeChild(imgElement);
+  const cleanForm = document.getElementById("clean_form");
 
   icon.style.display = "flex";
   size.style.display = "flex";
   add.style.display = "flex";
+  cleanForm.style.display= "none";
 
   const selectCategory = document.querySelector("#categorie");
   while (selectCategory.firstChild) {
@@ -274,6 +278,22 @@ function emptyForm() {
   const form = document.getElementById("formulaire");
   form.reset();
 }
+
+function clean(){
+const cleanForm = document.getElementById("clean_form");
+const imagePreviewContainer = document.querySelector(".window_add");
+const imgElement = imagePreviewContainer.querySelector("img");
+
+  if(imgElement){
+  cleanForm.style.display = 'flex';
+  cleanForm.addEventListener('click', emptyForm);
+
+  }
+}
+
+ 
+
+
 
 
 
