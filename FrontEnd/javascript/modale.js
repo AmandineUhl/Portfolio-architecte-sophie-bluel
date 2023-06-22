@@ -1,19 +1,19 @@
-
-function modal1() {
-  const modal1 = document.getElementById("modal1");
-  const modale2 = document.getElementById("modal2");
+// Fonction pour afficher la modale
+function modalDelete() {
+  const modalDeleteImg = document.getElementById("modal_delete");
+  const modalAddImg = document.getElementById("modal_add");
   const main = document.querySelector("#main_modal");
   const accessModale = document.getElementById("boutonModif");
   const modalClosed = document.getElementById("nav_closed");
   const nextModale = document.getElementById("add_pictures");
 
   function showModals() {
-    modal1.setAttribute("aria-hidden", "false");
+    modalDeleteImg.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
   }
 
   function hideModals() {
-    modal1.setAttribute("aria-hidden", "true");
+    modalDeleteImg.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
   }
 
@@ -25,24 +25,20 @@ function modal1() {
       hideModals();
     }
   });
-  
 
   document.addEventListener("click", (event) => {
     if (event.target === main) {
       hideModals();
-      modale2.setAttribute("aria-hidden", "true");
+      modalAddImg.setAttribute("aria-hidden", "true");
     }
   });
 
-  nextModale.addEventListener("click", modal2);
+  nextModale.addEventListener("click", modalAdd);
 
   chargeImageModal();
 }
 
-modal1();
-
-
-
+modalDelete();
 
 // Fonction pour charger les images de la galerie
 function chargeImageModal() {
@@ -85,7 +81,10 @@ function chargeImageModal() {
               }
             })
             .catch((error) => {
-              console.error("Erreur lors de la suppression de l'image :", error);
+              console.error(
+                "Erreur lors de la suppression de l'image :",
+                error
+              );
             });
         });
       });
@@ -95,20 +94,19 @@ function chargeImageModal() {
     });
 }
 
-
-
-function modal2() {
-  const modal1 = document.getElementById("modal1");
-  const modal2 = document.getElementById("modal2");
+// Fonction pour afficher le formulaire d'ajout d'images
+function modalAdd() {
+  const modalDeleteImg = document.getElementById("modal_delete");
+  const modalAddImg = document.getElementById("modal_add");
   const main = document.querySelector("#main_modal");
   const modalClosed = document.getElementById("nav_closed2");
   const navPreview = document.getElementById("nav_previewsly");
 
-  modal1.setAttribute("aria-hidden", "true");
-  modal2.setAttribute("aria-hidden", "false");
+  modalDeleteImg.setAttribute("aria-hidden", "true");
+  modalAddImg.setAttribute("aria-hidden", "false");
 
   const closeModal = () => {
-    modal2.setAttribute("aria-hidden", "true");
+    modalAddImg.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
     emptyForm();
   };
@@ -120,20 +118,18 @@ function modal2() {
     }
   };
 
-  const switchToModal1 = () => {
-    modal2.setAttribute("aria-hidden", "true");
-    modal1.setAttribute("aria-hidden", "false");
+  const switchToModalDelete = () => {
+    modalAddImg.setAttribute("aria-hidden", "true");
+    modalDeleteImg.setAttribute("aria-hidden", "false");
     emptyForm();
   };
 
   modalClosed.addEventListener("click", closeModal);
   document.addEventListener("keydown", handleKeyDown);
-  navPreview.addEventListener("click", switchToModal1);
+  navPreview.addEventListener("click", switchToModalDelete);
 }
 
-
-//preview
-
+// Gestion de la prévisualisation de l'image
 const imageInput = document.getElementById("input-photo");
 const imagePreviewContainer = document.querySelector(".window_add");
 const icon = document.querySelector(".icon");
@@ -143,15 +139,8 @@ const size = document.querySelector(".size");
 imageInput.addEventListener("change", () => {
   if (imageInput.files && imageInput.files[0]) {
     const file = imageInput.files[0];
-    const maxSizeInBytes = 4 * 1024 * 1024; // 4 Mo
-
-    if (file.size > maxSizeInBytes) {
-      alert("L'image ne doit pas dépasser 4 Mo.");
-
-      return;
-    }
-
     const reader = new FileReader();
+
     reader.onload = (e) => {
       const imgElement = document.createElement("img");
       imgElement.src = e.target.result;
@@ -160,7 +149,7 @@ imageInput.addEventListener("change", () => {
       icon.style.display = "none";
       size.style.display = "none";
       add.style.display = "none";
-      clean();
+      buttonClean();
       showCategory();
     };
 
@@ -169,13 +158,12 @@ imageInput.addEventListener("change", () => {
 });
 
 
-
+// Appel de l'API pour récupérer les catégories
 const apiCategories = async () => {
-  
   try {
     await fetch("http://localhost:5678/api/categories")
       .then((response) => response.json())
-      
+
       .then((categoriesResponse) => {
         categories = categoriesResponse;
       });
@@ -184,6 +172,7 @@ const apiCategories = async () => {
   }
 };
 
+// Affichage des catégories dans le menu déroulant
 async function showCategory() {
   const selectCategory = document.querySelector("#categorie");
   const imagePreviewContainer = document.querySelector(".window_add");
@@ -207,10 +196,9 @@ async function showCategory() {
   }
 }
 
+// Validation du formulaire d'ajout
 
-// valider
-
-document.getElementById("buton_send").addEventListener("click", function() {
+document.getElementById("buton_send").addEventListener("click", () => {
   const title = document.getElementById("input-texte").value;
   const category = document.getElementById("categorie").value;
   const image = document.getElementById("input-photo").files[0];
@@ -220,12 +208,9 @@ document.getElementById("buton_send").addEventListener("click", function() {
   formData.append("title", title);
   formData.append("category", category);
   formData.append("image", image);
-  
+
   if (!title) {
-    
     errorTitleText.classList.add("active");
-
-
   } else {
     // Sinon, effectuer la requête API
     fetch("http://localhost:5678/api/works/", {
@@ -235,30 +220,32 @@ document.getElementById("buton_send").addEventListener("click", function() {
       },
       body: formData,
     })
-    .then((response) => {
-      if (response.ok) {
-        
-        errorTitleText.classList.remove("active");
-  
+      .then((response) => {
+        if (response.ok) {
+          errorTitleText.classList.remove("active");
 
-        fetchImages();
-        chargeImageModal();
-        modal2();
-        emptyForm();
-      
-        console.log("La requête a été traitée avec succès.");
-        
-        
-      } else {
-        console.error("Une erreur s'est produite lors du traitement de la requête.");
-      }
-    })
-    .catch((error) => {
-      console.error("Une erreur s'est produite lors de l'envoi de la requête :", error);
-    });
+          fetchImages();
+          chargeImageModal();
+          modalAdd();
+          emptyForm();
+
+          console.log("La requête a été traitée avec succès.");
+        } else {
+          console.error(
+            "Une erreur s'est produite lors du traitement de la requête."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Une erreur s'est produite lors de l'envoi de la requête :",
+          error
+        );
+      });
   }
 });
 
+// Fonction pour vider le formulaire
 function emptyForm() {
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
@@ -268,7 +255,7 @@ function emptyForm() {
   icon.style.display = "flex";
   size.style.display = "flex";
   add.style.display = "flex";
-  cleanForm.style.display= "none";
+  cleanForm.style.display = "none";
 
   const selectCategory = document.querySelector("#categorie");
   while (selectCategory.firstChild) {
@@ -279,33 +266,14 @@ function emptyForm() {
   form.reset();
 }
 
-function clean(){
-const cleanForm = document.getElementById("clean_form");
-const imagePreviewContainer = document.querySelector(".window_add");
-const imgElement = imagePreviewContainer.querySelector("img");
+// Gestion de l'affichage du bouton de nettoyage du formulaire
+function buttonClean() {
+  const cleanForm = document.getElementById("clean_form");
+  const imagePreviewContainer = document.querySelector(".window_add");
+  const imgElement = imagePreviewContainer.querySelector("img");
 
-  if(imgElement){
-  cleanForm.style.display = 'flex';
-  cleanForm.addEventListener('click', emptyForm);
-
+  if (imgElement) {
+    cleanForm.style.display = "flex";
+    cleanForm.addEventListener("click", emptyForm);
   }
 }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
