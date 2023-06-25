@@ -91,6 +91,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -105,17 +106,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -123,10 +128,12 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 /** end reset css**/
 body {
   max-width: 1140px;
@@ -135,6 +142,7 @@ body {
   font-size: 14px;
   min-height: 100vh;
 }
+
 header {
   margin: 50px 0;
 }
@@ -161,7 +169,7 @@ header {
   background-color: white;
   color: black;
   width: auto;
-
+  border: none;
   border-radius: 60px;
 }
 
@@ -191,7 +199,7 @@ h1 {
   color: #b1663c;
 }
 
-h1 > span {
+h1>span {
   font-family: "Work Sans";
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -207,15 +215,18 @@ h2 {
   font-size: 30px;
   color: #1d6154;
 }
+
 nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
 }
+
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
 }
+
 .login,
 .projet {
   text-decoration: none;
@@ -240,6 +251,7 @@ li:hover {
 #introduction figure {
   flex: 1;
 }
+
 #introduction img {
   display: block;
   margin: auto;
@@ -249,6 +261,7 @@ li:hover {
 #introduction article {
   flex: 1;
 }
+
 #introduction h2 {
   margin-bottom: 1em;
 }
@@ -256,19 +269,20 @@ li:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
   text-align: center;
   margin-bottom: 1em;
 }
+
 /******filtres******/
 
 .all_filters {
   display: flex;
-  justify-content:center;
-  width: 50%;
-  margin: auto;
+  justify-content: center;
   margin-bottom: 30px;
 }
+
 .filtre {
   padding: 5px 15px;
   font-family: "Syne";
@@ -280,9 +294,11 @@ li:hover {
   border: 1px solid #1d6154;
   border-radius: 25px;
 }
+
 .filtre:hover {
   cursor: pointer;
 }
+
 .filtre.active {
   background-color: #1d6154;
   color: white;
@@ -299,16 +315,20 @@ li:hover {
 .gallery img {
   width: 100%;
 }
+
 #contact {
   width: 50%;
   margin: auto;
 }
-#contact > * {
+
+#contact>* {
   text-align: center;
 }
+
 #contact h2 {
   margin-bottom: 20px;
 }
+
 #contact form {
   text-align: left;
   margin-top: 30px;
@@ -322,9 +342,11 @@ li:hover {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
   margin: 2em 0 1em 0;
 }
+
 #contact textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -374,12 +396,14 @@ nav a {
   width: 379px;
   height: 51px;
 }
+
 .error-message {
   color: #d65353;
   font-size: 1rem;
   margin-top: 1em;
   text-align: center;
 }
+
 .shake {
   animation: shake 0.3s ease-in-out;
 }
@@ -389,18 +413,23 @@ nav a {
     background-color: #d65353;
     transform: translateX(0);
   }
+
   20% {
     transform: translateX(-10px);
   }
+
   40% {
     transform: translateX(10px);
   }
+
   60% {
     transform: translateX(-10px);
   }
+
   80% {
     transform: translateX(10px);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -453,20 +482,21 @@ nav a {
   flex-direction: column;
   justify-content: center;
   overflow: auto;
-  width: 40%;
+  width: 35%;
   height: auto;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-
-  & h1 {
-    text-align: center;
-    font-family: "Work Sans";
-    font-weight: 400;
-    font-size: 26px;
-    color: black;
-  }
 }
+
+#modal_delete h2 {
+  text-align: center;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 26px;
+  color: black;
+}
+
 
 #nav_closed {
   text-align: right;
@@ -483,14 +513,20 @@ nav a {
   margin: 35px;
   margin-bottom: 0px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #b3b3b3;
-
-  & img {
-    width: 76px;
-    height: 102px;
-  }
-
 }
+
+#works img {
+  width: 76px;
+  height: 102px;
+}
+
+#works figcaption {
+  font-size: 12px;
+  margin-bottom: 8px;
+  margin-top: 2px;
+}
+
+
 
 #add_pictures {
   cursor: pointer;
@@ -503,6 +539,16 @@ nav a {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+  border: none;
+}
+
+.first-bar-modal {
+  height: 1px;
+  width: 70%;
+  margin: auto;
+  align-items: center;
+  background: #b3b3b3;
+  
 }
 
 #control_modal {
@@ -513,7 +559,7 @@ nav a {
 
 #all_supprime {
   color: #d65353;
-  text-decoration-line: underline;
+  text-decoration-line: none;
   cursor: pointer;
   border: none;
   background-color: white;
@@ -525,7 +571,7 @@ figure {
   position: relative;
 }
 
-figure i {
+figure .delete_icon {
   position: absolute;
   color: white;
   right: 3px;
@@ -535,6 +581,20 @@ figure i {
   background-color: black;
   border: none;
   border-radius: 5px;
+  font-size: 12px;
+}
+
+figure .move_icon {
+  position: absolute;
+  right: 27px;
+  top: 3px;
+  color: white;
+  padding: 5px;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
 }
 
 /****modale ajout image*****/
@@ -549,27 +609,30 @@ figure i {
   justify-content: center;
   align-items: center;
   overflow: auto;
-  width: 40%;
+  width: 35%;
   height: auto;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-
-  & h2 {
-    text-align: center;
-    font-family: "Work Sans";
-    font-weight: 400;
-    font-size: 26px;
-    color: black;
-  }
 }
 
-#nav_delete, #nav_add {
+#modal_add h2 {
+  text-align: center;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 26px;
+  color: black;
+}
+
+
+#nav_delete,
+#nav_add {
   position: relative;
   display: inline-block;
   width: 100%;
   margin-bottom: 30px;
 }
+
 #nav_previewsly {
   position: absolute;
   left: 0px;
@@ -594,26 +657,27 @@ figure i {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-
-  & p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-  }
-
-  & .icon {
-    font-size: 58px;
-    color: #b9c5cc;
-    margin-bottom: 19px;
-  }
-
-  & img {
-    margin: 5px;
-    width: 129px;
-    border-radius: 15px;
-  }
 }
+
+.window_add p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.window_add .icon {
+  font-size: 58px;
+  color: #b9c5cc;
+  margin-bottom: 19px;
+}
+
+.window_add img {
+  margin: 5px;
+  width: 129px;
+  border-radius: 15px;
+}
+
 
 #clean_form {
   display: none;
@@ -674,7 +738,7 @@ figure i {
   margin-top: 10px;
 }
 
-#input-form input,
+#input-texte,
 #input-form select {
   width: 420px;
   height: 51px;
@@ -682,6 +746,9 @@ figure i {
   margin-top: 10px;
   margin-bottom: 10px;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  font-family: "Work sans";
+  font-size: 14px;
+  padding-left: 10px;
 }
 
 .second-bar-modal {
@@ -695,16 +762,23 @@ figure i {
   padding: 10px;
   border-radius: 18px;
   width: 237px;
-  height: 36px;
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 500;
+  cursor: pointer;
+  font-family: "Syne";
+  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   background-color: #a7a7a7;
-  cursor: pointer;
+  border: none;
+  margin: auto;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
+
+
+
+
 
 .hidden {
   display: none;

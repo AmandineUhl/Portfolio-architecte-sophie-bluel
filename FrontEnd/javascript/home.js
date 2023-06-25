@@ -13,7 +13,6 @@ const fetchImages = async (category = null) => {
     const filteredData = category
       ? data.filter((image) => image.category.name === category.name)
       : data;
-
     // Parcours des données filtrées pour créer les éléments HTML correspondants
     filteredData.forEach((image) => {
       const figure = document.createElement("figure");
@@ -93,7 +92,7 @@ const sectionPortfolio = document.querySelector("#portfolio H2");
 const changeLog = document.querySelector(".login");
 
 // Affichage/masquage des filtres en fonction de la présence du token
-containerFiltres.style.display = token ? "none" : "block";
+containerFiltres.style.display = token ? "none" : "flex";
 
 // Modification du texte du bouton de login/logout en fonction de la présence du token
 changeLog.innerText = token ? "logout" : "login";

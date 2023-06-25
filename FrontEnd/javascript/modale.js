@@ -5,35 +5,35 @@ function modalDelete() {
   const main = document.querySelector("#main_modal");
   const accessModale = document.getElementById("boutonModif");
   const modalClosed = document.getElementById("nav_closed");
-  const nextModale = document.getElementById("add_pictures");
+  const nextModal = document.getElementById("add_pictures");
 
-  function showModals() {
+  function showModal() {
     modalDeleteImg.setAttribute("aria-hidden", "false");
     main.setAttribute("aria-hidden", "false");
   }
 
-  function hideModals() {
+  function hideModal() {
     modalDeleteImg.setAttribute("aria-hidden", "true");
     main.setAttribute("aria-hidden", "true");
   }
 
-  accessModale.addEventListener("click", showModals);
-  modalClosed.addEventListener("click", hideModals);
+  accessModale.addEventListener("click", showModal);
+  modalClosed.addEventListener("click", hideModal);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      hideModals();
+      hideModal();
     }
   });
 
   document.addEventListener("click", (event) => {
     if (event.target === main) {
-      hideModals();
+      hideModal();
       modalAddImg.setAttribute("aria-hidden", "true");
     }
   });
 
-  nextModale.addEventListener("click", modalAdd);
+  nextModal.addEventListener("click", modalAdd);
 
   chargeImageModal();
 }
@@ -46,22 +46,34 @@ function chargeImageModal() {
   works.innerHTML = "";
 
   fetch("http://localhost:5678/api/works")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((item) => {
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(item => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
         const figcaption = document.createElement("figcaption");
         const deleteIcon = document.createElement("i");
+        const moveIcon = document.createElement("i");
 
         img.src = item.imageUrl;
         figcaption.textContent = "éditer";
-        deleteIcon.className = "fa-solid fa-trash-can";
+        deleteIcon.className = "fa-solid fa-trash-can delete_icon";
+
+        moveIcon.className = "fa-solid fa-arrows-up-down-left-right move_icon";
 
         figure.appendChild(img);
         figure.appendChild(figcaption);
         figure.appendChild(deleteIcon);
+        figure.appendChild(moveIcon);
         works.appendChild(figure);
+
+        img.addEventListener("mouseover", () => {
+          moveIcon.style.opacity = "1";
+        });
+
+        img.addEventListener("mouseout", () => {
+          moveIcon.style.opacity = "0";
+        });
 
         deleteIcon.addEventListener("click", (event) => {
           event.preventDefault();
@@ -74,13 +86,13 @@ function chargeImageModal() {
               Authorization: `Bearer ${token}`,
             },
           })
-            .then((response) => {
+            .then(response => {
               if (response.ok) {
                 figure.remove();
                 fetchImages();
               }
             })
-            .catch((error) => {
+            .catch(error => {
               console.error(
                 "Erreur lors de la suppression de l'image :",
                 error
@@ -89,7 +101,7 @@ function chargeImageModal() {
         });
       });
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Erreur lors du chargement des images :", error);
     });
 }
@@ -150,22 +162,22 @@ imageInput.addEventListener("change", () => {
       size.style.display = "none";
       add.style.display = "none";
       buttonClean();
-      showCategory();
     };
 
     reader.readAsDataURL(file);
   }
 });
 
-
 // Appel de l'API pour récupérer les catégories
 const apiCategories = async () => {
   try {
+    
     await fetch("http://localhost:5678/api/categories")
-      .then((response) => response.json())
+      .then(response => response.json())
 
-      .then((categoriesResponse) => {
-        categories = categoriesResponse;
+      .then(categoriesResponse => {
+        
+          categories = categoriesResponse;
       });
   } catch (error) {
     console.log("Erreur à l'affichage des catégories :", error);
@@ -177,6 +189,7 @@ async function showCategory() {
   const selectCategory = document.querySelector("#categorie");
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
+  
 
   if (imgElement) {
     try {
@@ -203,6 +216,7 @@ document.getElementById("buton_send").addEventListener("click", () => {
   const category = document.getElementById("categorie").value;
   const image = document.getElementById("input-photo").files[0];
   const errorTitleText = document.querySelector(".error-title-form");
+  const token = sessionStorage.getItem("token");
 
   const formData = new FormData();
   formData.append("title", title);
@@ -220,7 +234,7 @@ document.getElementById("buton_send").addEventListener("click", () => {
       },
       body: formData,
     })
-      .then((response) => {
+      .then(response => {
         if (response.ok) {
           errorTitleText.classList.remove("active");
 
@@ -249,7 +263,6 @@ document.getElementById("buton_send").addEventListener("click", () => {
 function emptyForm() {
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
-  imagePreviewContainer.removeChild(imgElement);
   const cleanForm = document.getElementById("clean_form");
 
   icon.style.display = "flex";
@@ -257,13 +270,20 @@ function emptyForm() {
   add.style.display = "flex";
   cleanForm.style.display = "none";
 
+  if (imagePreviewContainer.contains(imgElement)) {
+    imagePreviewContainer.removeChild(imgElement);
+  }
   const selectCategory = document.querySelector("#categorie");
-  while (selectCategory.firstChild) {
-    selectCategory.removeChild(selectCategory.firstChild);
+  const options = selectCategory.querySelectorAll("option");
+  for (let i = 1; i < options.length; i++) {
+    selectCategory.removeChild(options[i]);
   }
 
   const form = document.getElementById("formulaire");
   form.reset();
+
+  changeColor();
+  showCategory();
 }
 
 // Gestion de l'affichage du bouton de nettoyage du formulaire
@@ -275,5 +295,33 @@ function buttonClean() {
   if (imgElement) {
     cleanForm.style.display = "flex";
     cleanForm.addEventListener("click", emptyForm);
+  }
+  showCategory();
+}
+
+//gestion du changement de couleur du bouton de validation du formulaire
+
+const inputTexte = document.getElementById("input-texte");
+const categorie = document.getElementById("categorie");
+const inputPhoto = document.getElementById("input-photo");
+const buttonBackground = document.getElementById("buton_send");
+
+inputTexte.addEventListener("input", changeColor);
+categorie.addEventListener("input", changeColor);
+inputPhoto.addEventListener("input", changeColor);
+
+function changeColor() {
+  const imagePreviewContainer = document.querySelector(".window_add");
+  const imgElement = imagePreviewContainer.querySelector("img");
+
+  const title = inputTexte.value.trim();
+  const category = categorie.value.trim();
+
+  if (imgElement && title !== "" && category !== "") {
+    buttonBackground.style.backgroundColor = "#1d6154";
+    buttonBackground.style.color = "white";
+  } else {
+    buttonBackground.style.backgroundColor = "";
+    buttonBackground.style.color = "";
   }
 }
