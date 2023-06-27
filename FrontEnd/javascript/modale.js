@@ -250,7 +250,7 @@ document.getElementById("buton_send").addEventListener("click", () => {
           );
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(
           "Une erreur s'est produite lors de l'envoi de la requête :",
           error
@@ -260,7 +260,8 @@ document.getElementById("buton_send").addEventListener("click", () => {
 });
 
 // Fonction pour vider le formulaire
-function emptyForm() {
+function emptyForm(event) {
+  event.preventDefault();
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
   const cleanForm = document.getElementById("clean_form");
