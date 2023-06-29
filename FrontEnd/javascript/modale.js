@@ -23,6 +23,7 @@ function modalDelete() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       hideModal();
+      
     }
   });
 
@@ -261,7 +262,7 @@ document.getElementById("buton_send").addEventListener("click", () => {
 
 // Fonction pour vider le formulaire
 function emptyForm(event) {
-  event.preventDefault();
+  
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
   const cleanForm = document.getElementById("clean_form");
@@ -285,6 +286,7 @@ function emptyForm(event) {
 
   changeColor();
   showCategory();
+  event.preventDefault();
 }
 
 // Gestion de l'affichage du bouton de nettoyage du formulaire
