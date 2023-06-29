@@ -261,7 +261,7 @@ document.getElementById("buton_send").addEventListener("click", () => {
 });
 
 // Fonction pour vider le formulaire
-function emptyForm(event) {
+function emptyForm() {
   
   const imagePreviewContainer = document.querySelector(".window_add");
   const imgElement = imagePreviewContainer.querySelector("img");
@@ -286,7 +286,6 @@ function emptyForm(event) {
 
   changeColor();
   showCategory();
-  event.preventDefault();
 }
 
 // Gestion de l'affichage du bouton de nettoyage du formulaire

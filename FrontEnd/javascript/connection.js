@@ -32,6 +32,6 @@ buttonConnect.addEventListener("click", async (event) => {
       }, 500);
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 });
